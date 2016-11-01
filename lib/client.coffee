@@ -125,4 +125,10 @@ class Client extends Gearman
     @sendCommand "SUBMIT_JOB", name, false, payload
     job
 
+  submitHighJob: (name, payload) =>
+    job = new EventEmitter
+    @queue.push job
+    @sendCommand "SUBMIT_JOB_HIGH", name, false, payload
+    job
+
 module.exports = Client
