@@ -4,5 +4,4 @@ node_modules
 \#*\#
 npm-debug.log
 coverage.html
-lib-js
 lib-js-cov
