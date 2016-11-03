@@ -139,6 +139,7 @@ OPTION_RES
       })(this));
       this.on('WORK_FAIL', (function(_this) {
         return function(handle) {
+          handle = handle.replace(/\0/g, '');
           _this.jobs[handle].emit('fail', handle);
           return delete _this.jobs[handle];
         };

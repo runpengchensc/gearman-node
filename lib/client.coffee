@@ -115,6 +115,7 @@ class Client extends Gearman
       @jobs[handle].emit 'complete', handle, data
       delete @jobs[handle]
     @on 'WORK_FAIL', (handle) =>
+      handle = handle.replace(/\0/g, '')
       @jobs[handle].emit 'fail', handle
       delete @jobs[handle]
     @connect()
