@@ -98,6 +98,7 @@ OPTION_RES
 
     function Client(options) {
       this.options = options;
+      this.submitLowJob = bind(this.submitLowJob, this);
       this.submitHighJob = bind(this.submitHighJob, this);
       this.submitJob = bind(this.submitJob, this);
       this.queue = [];
@@ -160,6 +161,14 @@ OPTION_RES
       job = new EventEmitter;
       this.queue.push(job);
       this.sendCommand("SUBMIT_JOB_HIGH", name, false, payload);
+      return job;
+    };
+
+    Client.prototype.submitLowJob = function(name, payload) {
+      var job;
+      job = new EventEmitter;
+      this.queue.push(job);
+      this.sendCommand("SUBMIT_JOB_LOW", name, false, payload);
       return job;
     };
 
